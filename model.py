@@ -10,7 +10,7 @@ with open("./data/driving_log.csv") as csvfile:
         lines.append(line)
 
 from sklearn.model_selection import train_test_split
-train_samples, validation_samples = train_test_split(lines, test_size=0.2)
+train_samples, validation_samples = train_test_split(lines, test_size=0.3)
 
 from sklearn.utils import shuffle
 def generator(samples, batch_size=32):
@@ -115,6 +115,7 @@ model.add(Convolution2D(64,3,3,activation='relu'))
 model.add(Flatten())
 model.add(Dense(200))
 model.add(Dense(100))
+model.add(Dropout(0.5))
 model.add(Dense(50))
 model.add(Dense(10))
 model.add(Dense(1))
@@ -122,7 +123,7 @@ model.add(Dense(1))
 
 model.compile(loss='mse', optimizer='adam')
 #model.fit(X_train, y_train, validation_split=0.2, shuffle=True, nb_epoch=10)
-model.fit_generator(train_generator, samples_per_epoch= 6*len(train_samples), validation_data=validation_generator, nb_val_samples=len(6*validation_samples), nb_epoch=10)
+model.fit_generator(train_generator, samples_per_epoch= 6*len(train_samples), validation_data=validation_generator, nb_val_samples=len(6*validation_samples), nb_epoch=3)
 
 model.save('model.h5')
 

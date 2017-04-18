@@ -48,9 +48,11 @@ The model.py file contains the code for training and saving the convolution neur
 
 ####1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 3x3 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+My model consists of a convolution neural network with 3x3 and 5x5 filter sizes and depths between 24 and 64
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer. 
+
+The model also uses Dropout layer to avoid overfitting
 
 ####2. Attempts to reduce overfitting in the model
 
@@ -108,4 +110,4 @@ After the collection process, I had 40,000 number of data points. I then preproc
 
 I finally randomly shuffled the data set and put 20% of the data into a validation set. 
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 7 as validation loss started increasing after 7 epochs
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was 10 as validation loss started increasing after 5 epochs
